@@ -1,0 +1,29 @@
+{
+    "commands" : [
+        {
+            "command_name": "StartUploadInferenceData",
+            "parameters": {
+                "ModelId": "SmartParking-Cars",
+                "Mode": 1,
+                "UploadMethod": "BlobStorage",
+                "FileFormat": "JPG",
+                "UploadMethodIR": "MQTT",
+                "UploadInterval": 30,
+                "NumberOfInferencesPerMessage": 1,
+                "MaxDetectionsPerFrame": 1,
+                "PPLParameter": {
+                    "header" :
+                    {
+                        "id" : "00",
+                        "version" : "01.00.00"
+                    },
+                    "dnn_output_detections" : 64,
+                    "max_detections" : 5,
+                    "threshold" : 0.3,
+                    "input_width" : 320,
+                    "input_height" : 320
+                }
+            }
+        }
+    ]
+}

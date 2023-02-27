@@ -1,0 +1,49 @@
+{
+  "name": "smart-parking-ui",
+  "version": "1.0.0",
+  "description": "UI component for Smart Parking that detects cars and calculates overlap with user-defined parking spaces",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "sass": "^1.52.3"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "fabric": "^5.2.1",
+    "fabricjs-react": "^1.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
+    "react-router-dom": "^6.2.2",
+    "react-scripts": "5.0.0",
+    "react-switch": "^6.0.0",
+    "web-vitals": "^2.1.4"
+  }
+}

@@ -1,0 +1,98 @@
+/*
+ * Copyright 2023 Sony Semiconductor Solutions Corp. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.home__main {
+	height: calc(100vh - 60px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.home__deviceNameInput {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 320px;
+		.home__deviceNameInput__label {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 32px;
+			font-weight: 400;
+			line-height: 42px;
+			text-align: center;
+		}
+		.home__deviceNameInput__control {
+			margin-top: 24px;
+			display: flex;
+			height: 28px;
+			position: relative;
+			.home__deviceNameInput__input {
+				border-width: 0 0 1px 0;
+				padding: 6px 0px 6px 0px;
+				width: 264px;
+			}
+			.home__deviceNameInput__link {
+				margin-left: 8px;
+				padding-left: 12px;
+				width: 56px;
+				padding: 6px 8px 6px 8px;
+				background-color: #0078d4;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 16px;
+				color: white;
+				text-decoration: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+}
+.calibrator_test {
+	margin: 12px;
+}
+
+.error {
+	color: red;
+	font-weight: 400;
+	font-size: 11px;
+	position: absolute;
+	top: 32px;
+}
+
+input:focus {
+	outline: none;
+	border-bottom-color: #3bb0ff;
+}
+
+
+.home__deviceNameInput__link__disabled {
+	margin-left: 8px;
+	padding-left: 12px;
+	width: 56px;
+	padding: 6px 8px 6px 8px;
+	background-color: #8c8e9b;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	color: white;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+}
+

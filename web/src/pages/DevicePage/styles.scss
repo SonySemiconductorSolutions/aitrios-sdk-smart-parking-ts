@@ -1,0 +1,132 @@
+/*
+ * Copyright 2023 Sony Semiconductor Solutions Corp. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.devicePage__main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .devicePage__left {
+        width: 72.5%;
+        display: flex;
+        flex-direction: column;
+        .devicePage__status-header {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: #E0E0E0 solid 1px;
+            .devicePage__status-id {
+                margin-left: 16px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 24px;
+                text-transform: uppercase;
+                color: #8C8E9B;
+                letter-spacing: -0.0025em;
+                .devicePage__status-id--value {
+                    margin-left: 4px;
+                    color: #373944;
+                    text-transform: none;
+                }
+            }
+            .devicePage__status-dynamic {
+                display: flex;
+                align-items: center;
+                margin-right: 8px;
+                .devicePage__status-connectivity {
+                    margin-right: 8px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    color: #8C8E9B;
+                    letter-spacing: -0.0025em;
+                    .devicePage__status-connectivity--value {
+                        margin-left: 4px;
+                        color: #373944;
+                        text-transform: none;
+                    }
+                }
+                .devicePage__status-imageTimer {
+                    margin-right: 8px;
+                    padding-left: 8px;
+                    border-left: 1px solid #E0E0E0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    text-transform: uppercase;
+                    color: #8C8E9B;
+                    letter-spacing: -0.0025em;
+                    .devicePage__status-imageTimer--value {
+                        margin-left: 4px;
+                        color: #373944;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+        .devicePage__feed {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: #F9F9F9;
+            min-height: calc(100vh - 153px);
+            padding-top: 52px;
+        }
+    }
+    .devicePage__right {
+        width: 27.5%;
+        border-left: #E0E0E0 solid 1px;
+        .devicePage__modeToggle {
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #E0E0E0;
+            cursor: pointer;
+            [class*="devicePage__modeToggle--"] {
+                font-family: SST Pro, Arial, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 16px;
+                color: #373944;
+                height: 100%;
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &.--active {
+                    border-bottom: 1px solid #3BB0FF;
+                }
+            }
+        }
+    }
+    .devicePage__info {
+        .devicePage__controls {
+            margin-top: 24px;
+            display: flex;
+            button {
+                margin-right: 12px;
+            }
+        }
+        .devicePage__feed {
+            margin-top: 24px;
+        }
+    }
+}
