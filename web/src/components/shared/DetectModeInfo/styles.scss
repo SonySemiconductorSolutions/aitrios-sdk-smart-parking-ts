@@ -1,0 +1,147 @@
+/*
+ * Copyright 2023 Sony Semiconductor Solutions Corp. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.x {
+    display: contents;
+    &:nth-child(n) {
+        background-color: red;
+    }
+}
+.DetectModeInfo__main {
+    .DetectModeInfo__description {
+        padding: 8px 16px 8px 16px;
+        border-bottom: 1px solid #E0E0E0;
+        [class*='description--'] {
+            font-family: SST Pro, Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            color:   #373944;
+        }
+        .DetectModeInfo__description--title {
+            font-size: 13px;
+            line-height: 24px;
+            text-transform: uppercase;
+        }
+        .DetectModeInfo__description--text {
+            font-size: 12px;
+            margin-top: 8px;
+            line-height: 16px;
+            padding-bottom: 8px;
+        }
+    }
+    .DetectModeInfo__options {
+        padding: 8px 0px;
+        border-bottom: 1px solid #E0E0E0;
+        .DetectModeInfo__options--title {
+            font-family: SST Pro, Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 24px;
+            color:   #373944;
+            text-transform: uppercase;
+            padding: 0px 16px;
+        }
+        .DetectModeInfo__options--controls {
+            padding: 0px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            .DetectModeInfo__options--control {
+                width: 50%;
+                padding-top: 8px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                &.--off {
+                    .react-switch-bg {
+                        box-sizing: border-box;
+                        border: 1px solid #3BB0FF;
+                    }
+                }
+            }
+            .DetectModeInfo__options--label {
+                padding-left: 8px;
+                font-family: SST Pro, Arial, Helvetica, sans-serif;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 16px;
+                color: #373944;
+            }
+        }
+    }
+
+    .DetectModeInfo__results {
+        padding: 8px 0px;
+        [class*='results--'] {
+            font-family: SST Pro, Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            color: #373944;
+        }
+        .DetectModeInfo__results--title {
+            font-size: 13px;
+            line-height: 24px;
+            text-transform: uppercase;
+            padding: 0px 16px;
+        }
+        .DetectModeInfo__results--table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 8px 0px;
+            font-family: SST Pro, Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #373944;
+            .DetectModeInfo__results--tableHeader {
+                padding-bottom: 8px;
+                &.--id {
+                    padding-left: 16px;
+                    border-bottom: 1px solid #E0E0E0;
+                }
+                &.--vacant, &.--occupied {
+                    justify-self: center;
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    border-bottom: 1px solid #E0E0E0;
+                }
+            }
+            .DetectModeInfo__results--tableItem {
+                align-self: center;
+                margin: 8px 0px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                background-color: #FAFAFA;
+                &:nth-child(6n+1), &:nth-child(6n+2), &:nth-child(6n+3) {
+                    background-color: #FFFFFF;
+                }
+                &.--id {
+                    padding-left: 16px;
+                }
+                &.--vacant, &.--occupied {
+                    justify-self: center;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    &.--hidden {
+                        svg {
+                            visibility: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

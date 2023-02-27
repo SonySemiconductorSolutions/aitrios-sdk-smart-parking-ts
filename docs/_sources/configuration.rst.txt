@@ -1,0 +1,30 @@
+.. _reqs:
+
+System requirements
+===================
+
+The following lists the official system requirements for using Smart Parking:
+
+- A PC running Windows 10 with Docker Desktop or GitHub Codespaces
+
+- Access to an active deployment of Console for AITRIOS
+
+- Access to Smart Parking Repository(https://github.com/SonySemiconductorSolutions/aitrios-sdk-smart-parking-ts)
+
+- Edge AI devices that are enrolled in Console
+
+ .. note::
+
+   An offline mode is provided to demonstrate the tool without an Internet connection or Edge AI device. Please see :ref:`offline`.
+
+- Mounting supplies for Edge AI devices:
+
+  - Tripod: https://www.amazon.com/dp/B00XI87KV8
+  
+  - 1/4"-20 double thread adapter: https://www.amazon.com/dp/B07P94Z1QH
+  
+  - Tripod clamp: https://www.amazon.com/dp/B01JZ5Y1JQ
+
+- A printed parking lot from the supplied PDF.
+
+- 1:64 scale toy cars to arrange on the printed parking lot: https://www.amazon.com/gp/product/B01NBHXEAV

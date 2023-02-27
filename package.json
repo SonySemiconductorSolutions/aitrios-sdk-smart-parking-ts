@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "lint": "eslint server web --ext ts,tsx,js",
+    "lint-fix": "eslint server web --ext ts,tsx,js --fix",
+    "install-dependencies": "cd server && git submodule update --init --recursive && npm install && cd ../web && npm install",
+    "build": "cd server && npm run build-ui",
+    "start": "cd server && npm start",
+    "build-start": "cd server && npm run build-ui && npm start"
+  },
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "open-cli": "^7.1.0"
+  }
+}

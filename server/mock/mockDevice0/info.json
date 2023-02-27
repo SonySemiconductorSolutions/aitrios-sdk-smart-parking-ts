@@ -1,0 +1,15 @@
+{
+    "device_id": "mockDevice0",
+    "status": "enabled",
+    "connectionState": "Connected",
+    "registrationId": "mockDevice0",
+    "origin": "mock",
+    "models": [
+        {
+            "model_version_id": "000000"
+        },
+        {
+            "model_version_id": "parkingiot:v1.00"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+server/client/*
+server/mock/*
+server/consoleaccesslibrary/*
+server/common/ObjectdetectionGenerated.ts
+server/common/ObjectdetectionGenerated.js

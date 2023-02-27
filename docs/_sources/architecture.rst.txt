@@ -1,0 +1,44 @@
+.. _architecture:
+
+Appendix: Software Architecture
+===============================
+
+This topic provides an overview of the major components used by Smart Parking.
+
+    .. image:: images/architecture.png
+     :width: 800
+
+Backend (Node.js)
+-----------------
+
+ - The backend serves as a reverse proxy for the Console REST API endpoints.
+
+    - Uses ``express`` to handle incoming requests from the Smart Parking frontend.
+    
+    - Uses ``turf`` (specifically ``@turf/intersect``) for the postprocessing step of calculating overlap between incoming inference rectangles and user-calibrated parking spaces.
+    
+    - Uses a non-npm dependency to communicate with the Console in the form of the TypeScript Console Access Library.
+
+- Overall, the backend is a fairly small component of the overall project.
+
+- server/calibration.json stores annotation settings.
+
+- **Optional**: The Custom Vision-trained model used to process frames from the IMX500 is not required. You can use your own trained model as long as it can undergo the Console model-conversion process and has the same output as the Custom Vision object-detection model. In this case, the ``SMART_PARKING_MODEL_ID`` parameter in the project's ``.env`` file should be updated with the converted model's name.
+
+Frontend (React.js)
+-------------------
+
+When given a device name, the frontend allows a user to perform three major operations:
+
+ #. Tells the connected Edge AI device to start collecting inference data and images via ``StartUploadInferenceResult``.
+
+ #. After images are loaded, the frontend calibrates the Edge AI device by annotating the parking spots in the feed with user-specified 4-point polygons.
+
+    The geometric data representing these 4-point polygons (vertex coordinates) is stored to and retrieved from the local file.
+
+ #. Using an an appropriately uploaded model (by default, ``SmartParking-Cars``, a model trained on Microsoft Custom Vision), the frontend processes captured Edge AI device frames into object inference data (in this case, cars) and stores it in the Console.
+
+  - When actively collecting data, incoming inference data is displayed on the Detection Feed in the form of bounding boxes.
+ 
+  - Occupancy status of the calibrated parking spaces based on the calculated overlap of the bounding boxes is accordingly updated and displayed.
+

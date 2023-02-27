@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Appendix: Software Architecture &mdash; Smart Parking User Guide 1.0.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Using Smart Parking" href="using.html" /> 
+
+ 
+  
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a class="site-nav-toggle hidden-lg-up"><i class="icon-menu"></i></a>
+            <a class="site-title" href="index.html">
+                Smart Parking User Guide
+            </a>
+        </div>
+    </header>
+
+
+<div class="breadcrumbs-outer hidden-xs-down">
+    <div class="container">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="breadcrumbs">
+    
+      <li><a href="index.html">Docs</a></li>
+        
+      <li>Appendix: Software Architecture</li>
+    
+    
+      <li class="breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+</div>
+    </div>
+</div>
+    <div class="main-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 site-nav">
+                  <!--  
+<div role="search">
+    <form class="search" action="search.html" method="get">
+        <div class="icon-input">
+            <input type="text" name="q" placeholder="Search" />
+            <span class="icon-search"></span>
+        </div>
+        <input type="submit" value="Go" class="d-hidden" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div> -->
+                    <div class="site-nav-tree">
+                        
+                            
+                            
+                                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">System requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#edge-ai-device-setup">Edge AI device setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#assembling-the-edge-ai-device-fixture">Assembling the Edge AI device fixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#positioning-the-sensor">Positioning the sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installing-the-smart-parking-application">Installing the Smart Parking application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#editing-environment-settings">Editing environment settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#console-for-aitrios">Console for AITRIOS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training Smart Parking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using Smart Parking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#starting-smart-parking">Starting Smart Parking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#using-offline-mode">Using Offline Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#adding-spaces">Adding spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#editing-spaces">Editing spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#viewing-vacant-and-occupied-spaces">Viewing vacant and occupied spaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix: Software Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#backend-node-js">Backend (Node.js)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#frontend-react-js">Frontend (React.js)</a></li>
+</ul>
+</li>
+</ul>
+
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                    <div class="document">
+                        
+                            
+  <section id="appendix-software-architecture">
+<span id="architecture"></span><h1>Appendix: Software Architecture</h1>
+<p>This topic provides an overview of the major components used by Smart Parking.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/architecture.png"><img alt="_images/architecture.png" src="_images/architecture.png" style="width: 800px;" /></a>
+</div></blockquote>
+<section id="backend-node-js">
+<h2>Backend (Node.js)</h2>
+<blockquote>
+<div><ul>
+<li><p>The backend serves as a reverse proxy for the Console REST API endpoints.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">express</span></code> to handle incoming requests from the Smart Parking frontend.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">turf</span></code> (specifically <code class="docutils literal notranslate"><span class="pre">&#64;turf/intersect</span></code>) for the postprocessing step of calculating overlap between incoming inference rectangles and user-calibrated parking spaces.</p></li>
+<li><p>Uses a non-npm dependency to communicate with the Console in the form of the TypeScript Console Access Library.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Overall, the backend is a fairly small component of the overall project.</p></li>
+<li><p>server/calibration.json stores annotation settings.</p></li>
+<li><p><strong>Optional</strong>: The Custom Vision-trained model used to process frames from the IMX500 is not required. You can use your own trained model as long as it can undergo the Console model-conversion process and has the same output as the Custom Vision object-detection model. In this case, the <code class="docutils literal notranslate"><span class="pre">SMART_PARKING_MODEL_ID</span></code> parameter in the project’s <code class="docutils literal notranslate"><span class="pre">.env</span></code> file should be updated with the converted model’s name.</p></li>
+</ul>
+</section>
+<section id="frontend-react-js">
+<h2>Frontend (React.js)</h2>
+<p>When given a device name, the frontend allows a user to perform three major operations:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Tells the connected Edge AI device to start collecting inference data and images via <code class="docutils literal notranslate"><span class="pre">StartUploadInferenceResult</span></code>.</p></li>
+<li><p>After images are loaded, the frontend calibrates the Edge AI device by annotating the parking spots in the feed with user-specified 4-point polygons.</p>
+<p>The geometric data representing these 4-point polygons (vertex coordinates) is stored to and retrieved from the local file.</p>
+</li>
+<li><p>Using an an appropriately uploaded model (by default, <code class="docutils literal notranslate"><span class="pre">SmartParking-Cars</span></code>, a model trained on Microsoft Custom Vision), the frontend processes captured Edge AI device frames into object inference data (in this case, cars) and stores it in the Console.</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>When actively collecting data, incoming inference data is displayed on the Detection Feed in the form of bounding boxes.</p></li>
+<li><p>Occupancy status of the calibrated parking spaces based on the calculated overlap of the bounding boxes is accordingly updated and displayed.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+    <div class="footer" role="contentinfo">
+        <div class="container">
+            &#169; Copyright 2023, Sony Semiconductor Solutions Corp.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.
+        </div>
+    </div>  
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+.. _training:
+
+Training Smart Parking
+======================
+
+Training the system allows the Smart Parking application to identify objects and refine detection of vehicles in parking spaces.
+
+You can capture your own images to train the system, or for a quick start, Smart Parking provides precaptured images that you can use to train the system in a ``training_images.zip`` archive.
+
+During detection, the Custom Vision Object Detection model is used. Any detected object is taken into account, even if it is not car or vehicle.
+
+For more information, please refer to "3.6 Train model" in the Console User Manual.
+
+.. note::
+
+     If you're using your own training images and your own model, you'll need to set the ``ModelId`` parameter of your Command Parameter File appropriately before uploading it to the Console for AITRIOS.
