@@ -52,7 +52,8 @@ Adding spaces
 #. Click **Add space** to add a polygon to the preview.
 
    .. image:: images/addspace.png
-    :width: 500
+    :width: 800
+    :alt: Add a space
 
 #. Drag the polygon to place it over a parking space.
 
@@ -74,7 +75,8 @@ Editing spaces
 #. Select a space on the right side of the screen.
 
    .. image:: images/editspace.png
-    :width: 500
+    :width: 800
+    :alt: Select a space
 
 #. Drag the corners of the polygon to align its edges with the parking space.
 
@@ -90,6 +92,7 @@ Editing spaces
 
       .. |b_delete| image:: images/b_delete.png
        :height: 18
+       :alt: Trash box
    
 .. _viewing:
 
@@ -105,7 +108,8 @@ Viewing vacant and occupied spaces
 #. After detection is complete, a red indicator represents an occupied space, a green indicator represents a vacant space, an orange rectangle represents the detection area, and a blue polygon represents a defined space.
 
    .. image:: images/detected.png
-    :width: 500
+    :width: 800
+    :alt: Detection of vacant and occupied spaces
 
    You can use the **Occupied**, **Vacant**, **Defined spaces**, and **Detection rectangle** switches to customize the display.
 

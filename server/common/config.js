@@ -17,8 +17,8 @@
 /** Configuration. */
 exports.Config = {
   ConsoleAccessLibrarySettings: {
-    baseUrl: process.env.CONSOLE_BASE_URL || '',
-    tokenUrl: process.env.CONSOLE_TOKEN_URL || '',
+    consoleEndpoint: process.env.CONSOLE_BASE_URL || '',
+    portalAuthorizationEndpoint: process.env.CONSOLE_TOKEN_URL || '',
     clientSecret: process.env.CONSOLE_CLIENT_SECRET || '',
     clientId: process.env.CONSOLE_CLIENT_ID || ''
   },

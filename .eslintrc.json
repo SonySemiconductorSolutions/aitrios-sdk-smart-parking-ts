@@ -1,6 +1,7 @@
 {
     "extends": "standard",
     "rules": {
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "no-unused-vars": ["error", { "ignoreRestSiblings": true}]
     }
 }

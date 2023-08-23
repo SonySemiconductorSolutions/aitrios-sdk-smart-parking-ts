@@ -7,6 +7,7 @@ This topic provides an overview of the major components used by Smart Parking.
 
     .. image:: images/architecture.png
      :width: 800
+     :alt: Software architecture
 
 Backend (Node.js)
 -----------------

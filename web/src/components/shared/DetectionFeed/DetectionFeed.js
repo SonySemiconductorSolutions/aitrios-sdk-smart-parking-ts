@@ -89,6 +89,7 @@ const DetectionFeed = (props) => {
     useEffect(() => {
         const _liveCanvas = initLiveCanvas();
         setLiveCanvas(_liveCanvas);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [resultsCanvas, setResultsCanvas] = useState('');
@@ -96,6 +97,7 @@ const DetectionFeed = (props) => {
     useEffect(() => {
         const _resultsCanvas = initResultsCanvas();
         setResultsCanvas(_resultsCanvas);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [activeCanvas, setActiveCanvas] = useState(0); // 0 - live feed; 1 - results
@@ -113,6 +115,7 @@ const DetectionFeed = (props) => {
                     break;
             };
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeCanvas]);
 
     useEffect(() => {
@@ -124,6 +127,7 @@ const DetectionFeed = (props) => {
                 liveCanvas.renderAll();
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [latestImageURI]);
 
     useEffect(() => {
@@ -184,7 +188,7 @@ const DetectionFeed = (props) => {
             });
             resultsCanvas.renderAll();
         }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [boundingBoxes]);
 
     useEffect(() => {
@@ -192,6 +196,7 @@ const DetectionFeed = (props) => {
             renderParkingPolygons(parkingPolygons);
             liveCanvas.renderAll();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [liveCanvas, parkingPolygons]);
 
     useEffect(() => {
@@ -204,6 +209,7 @@ const DetectionFeed = (props) => {
             }
             liveCanvas.renderAll();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [parkingVisible]);
 
     useEffect(() => {
@@ -215,6 +221,7 @@ const DetectionFeed = (props) => {
             }
             liveCanvas.renderAll();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [boundingVisible]);
 
     useEffect(() => {
@@ -225,7 +232,7 @@ const DetectionFeed = (props) => {
         const vacantLabels = vacantPolygons.map(vp => vp.innerLabel);
 
         const vacantResultsLabels = Object.entries(resultsLabelMap).filter((kvArray) => {
-            const [label, fabricLabel] = kvArray;
+            const [label, ] = kvArray;
             return !overlapMap[label] || overlapMap[label] < DEFAULT_OVERLAP_THRESHOLD;
         }).map(kvArray => kvArray[1]);
 
@@ -244,6 +251,7 @@ const DetectionFeed = (props) => {
                 resultsCanvas.renderAll();
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [vacantVisible]);
 
     useEffect(() => {
@@ -254,7 +262,7 @@ const DetectionFeed = (props) => {
         const occupiedLiveLabels = occupiedLivePolygons.map(olp => olp.innerLabel);
 
         const occupiedResultsLabels = Object.entries(overlapMap).filter(kvArray => kvArray[1] >= DEFAULT_OVERLAP_THRESHOLD).map((kvArray) => {
-            const [label, overlapPercentage] = kvArray;
+            const [label, ] = kvArray;
             return resultsLabelMap[label];
         });
 
@@ -273,6 +281,7 @@ const DetectionFeed = (props) => {
                 resultsCanvas.renderAll();
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [occupiedVisible]);
 
     const initLiveCanvas = () => {
