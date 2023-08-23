@@ -11,7 +11,7 @@ COPY web ./web
 
 WORKDIR /usr/src/app/web
 RUN npm install
-RUN npm run containerized-build
+RUN npm run build
 
 WORKDIR /usr/src/app/server
 RUN npm install

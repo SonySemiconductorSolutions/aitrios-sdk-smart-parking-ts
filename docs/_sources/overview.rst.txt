@@ -1,7 +1,7 @@
 Overview
 ========
 
-Smart Parking consists of an AI model, PPL object detection, Console, and Cloud Application. For an in-depth view of the system, please see - :ref:`architecture`.
+Smart Parking consists of an AI model, PPL object detection, Console, and Cloud Application. For an in-depth view of the system, please see :ref:`architecture`.
 
 After you define parking spaces, Smart Parking provides real-time updates to identify occupied and unoccupied parking spaces in a parking area.
 

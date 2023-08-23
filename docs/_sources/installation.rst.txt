@@ -29,8 +29,9 @@ Assembling the Edge AI device fixture
 
 #. Screw the clamp (2) into the thread adapter.
 
-     .. image:: images/tripod.png
+     .. image:: images/Tripod.png
       :width: 300
+      :alt: Tripod with Edge AI Device
 
 #. Attach the Edge AI device (3) to the clamp as shown below. 
 
@@ -38,6 +39,7 @@ Assembling the Edge AI device fixture
 
     .. image:: images/camera_top.jpg
      :width: 200
+     :alt: LAN cable connection
 
 .. _sensorposition:
 
@@ -56,11 +58,18 @@ Positioning the sensor
 
    .. image:: images/lot_setup.jpg
     :width: 300
+    :alt: Toy cars on the printed parking lot
 
 #. Raise the tripod and adjust the angle of the clamp so the Edge AI device is aimed at the parking area as shown:
 
    .. image:: images/TripodV3Board.jpg
     :width: 300
+    :alt: Adjusting the tripod and the angle of the clamp
+
+Install Git
+-----------
+
+Go to https://git-scm.com/download/win and install Git.
 
 Installing the Smart Parking application
 ----------------------------------------
@@ -73,12 +82,6 @@ Using Codespaces
 #. Go to the Smart Parking SDK repository in GitHub.
 
 #. Start Codespaces and wait until ``postCreateCommand`` finishes.
-
-#. Type the following command to stop the node process:
-
-   .. code::
-
-      kill $(lsof -t -sTCP:LISTEN -i:8080)
 
 #. Edit ``server/.env``. For more information, see :ref:`environment`.
 
@@ -102,6 +105,16 @@ Creating and running a Docker image
 #. Install Docker on the host machine.
 
 #. Clone the Smart Parking SDK repository from GitHub.
+
+#. Navigate to the root project folder and then type the following commands:
+
+   .. code-block::
+   
+    cd server
+    
+    git submodule update --init --recursive
+    
+    cd ..
 
 #. Edit ``server/.env``. For more information, see :ref:`environment`.
 
@@ -186,7 +199,7 @@ Editing environment settings
 
 An environment file is provided in ``/server/.env``:
 
-Please coordinate with your IT adminitrator or AITRIOS representative for the appropriate values for your deployment.
+Please coordinate with your IT administrator or AITRIOS representative for the appropriate values for your deployment.
 
 - ``CONSOLE_BASE_URL``
 
@@ -196,13 +209,15 @@ Please coordinate with your IT adminitrator or AITRIOS representative for the ap
 
 - ``CONSOLE_CLIENT_ID``
 
-- ``SMART_PARKING_DETECTION_THRESHOLD``
+- ``SMART_PARKING_DETECTION_THRESHOLD``: Modify between [0, 1] to adjust object detection sensitivity.
 
-- ``SMART_PARKING_OVERLAP_THRESHOLD``
+- ``SMART_PARKING_OVERLAP_THRESHOLD``: Modify between [0, 1] adjust overlap algorithm sensitivity.
 
-- ``SMART_PARKING_DEFAULT_FEED_SIZE``
+- ``SMART_PARKING_DEFAULT_FEED_SIZE``: 480. Squared size of displayed images.
 
-- ``SMART_PARKING_CAMERA_RESOLUTION``
+- ``SMART_PARKING_CAMERA_RESOLUTION``: 320. Original size of a processed image - do not modify.
+
+- ``SMART_PARKING_INTERNAL_PORT``: Default of 8080. Port that the server component listens on.
 
 
 In ``/web/.env``, the ``REACT_APP_API_HOST`` setting contains the server's network address. If the value is empty, it assumes the API host runs locally to the UI.
@@ -212,7 +227,7 @@ Changes to the .env file will be reflected after you restart the application.
 Examples
 ~~~~~~~~
 
-- If you're using your own training images and your own model, you'll need to set the ``ModelId`` parameter of your Command Parameter File?. A sample of this file is available at  ``<project_root>/SmartParking_StartUploadInferenceData.json``.
+- If you're using your own training images and your own model, you'll need to set the ``ModelId`` parameter of your Command Parameter File. A sample of this file is available at  ``<project_root>/SmartParking_StartUploadInferenceData.json``.
 
 - If you want to change the communications port, please set the ``SMART_PARKING_INTERNAL_PORT`` parameter.
 
@@ -228,7 +243,7 @@ Console tasks
 
 #. Create a Config in **Deploy Device** with the intended Model for Smart Parking and deploy it to the Edge AI device.
 
-#. In the **Application** section of **Deploy Device**, deploy the ``ppl_objectdetectionssd`` PPL application to the Edge AI device.
+#. In the **Application** section of **Deploy Device**, deploy the "Vision and Sensing Application" for object detection ("Sample Object Detection Application" can be used) to the Edge AI device.
 
 #. Upload an appropriate Command Parameter File (Settings > Command Parameter > Import) and bind it to the Edge AI device in **Manage Device**. We provide a sample starting point for such a file in the root of the project repository: ``SmartParking_StartUploadInferenceData.json``.
 

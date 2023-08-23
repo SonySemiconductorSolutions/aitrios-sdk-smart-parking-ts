@@ -16,7 +16,10 @@
 
 const { JsonDB, Config: JsonConfig } = require('node-json-db');
 const { flatbuffers } = require('flatbuffers');
-const { SmartCamera } = require('./ObjectdetectionGenerated');
+
+const { ObjectDetectionTop } = require('./flatbuffer_schemas/object-detection-top');
+const { BoundingBox } = require('./flatbuffer_schemas/bounding-box');
+const { BoundingBox2d } = require('./flatbuffer_schemas/bounding-box2d');
 
 const _getCalibrationData = async (deviceId) => {
   const calibrationDB = new JsonDB(new JsonConfig('calibration', true, false, '/'));
@@ -55,7 +58,10 @@ const _parseFlatBuffer = (base64String) => {
     ]
   };
 
-  const pplOut = SmartCamera.ObjectDetectionTop.getRootAsObjectDetectionTop(new flatbuffers.ByteBuffer(decodedData));
+  /* The following relies on the pre-compiled schemas found in `/src/server/common/flatbuffer_schemas`
+    to deserialize the inference data
+  */
+  const pplOut = ObjectDetectionTop.getRootAsObjectDetectionTop(new flatbuffers.ByteBuffer(decodedData));
   const readObjData = pplOut.perception();
 
   if (!readObjData) {
@@ -66,8 +72,8 @@ const _parseFlatBuffer = (base64String) => {
   for (let i = 0; i < resNum; i++) {
     const objList = readObjData.objectDetectionList(i);
     const unionType = objList.boundingBoxType();
-    if (unionType === SmartCamera.BoundingBox.BoundingBox2d) {
-      const bbox2d = objList.boundingBox(new SmartCamera.BoundingBox2d());
+    if (unionType === BoundingBox.BoundingBox2d) {
+      const bbox2d = objList.boundingBox(new BoundingBox2d());
       const res = {
         C: Number(objList.classId()),
         P: Number(objList.score()),

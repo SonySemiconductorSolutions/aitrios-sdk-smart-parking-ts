@@ -19,9 +19,15 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-const CALClient = require('consoleAccessLibrary').Client;
+const { Client: CALClient, Config: CALConfig } = require('consoleAccessLibrary');
 
 const ConsoleAccessLibrarySettings = require('../common/config').Config.ConsoleAccessLibrarySettings;
+const config = new CALConfig(
+  ConsoleAccessLibrarySettings.consoleEndpoint,
+  ConsoleAccessLibrarySettings.portalAuthorizationEndpoint,
+  ConsoleAccessLibrarySettings.clientId,
+  ConsoleAccessLibrarySettings.clientSecret
+);
 
 const MOCK_DIRECTORY = path.join(__dirname, '../mock');
 const MOCK_DEVICE_0_IMAGES = require(path.join(MOCK_DIRECTORY, 'mockDevice0', 'images.json'));
@@ -38,15 +44,12 @@ let MOCK_DEVICE_1_INDEX = 0;
  * @returns an object containg information about the device.
  */
 const consoleGetDeviceInfo = async (deviceId) => {
-  const client = await CALClient.createInstance(ConsoleAccessLibrarySettings);
+  const client = await CALClient.createInstance(config);
   if (!client) {
     throw new Error('Unable to create ConsoleAccessLibrary instance.');
   }
 
-  const queryParams = {
-    deviceName: deviceId
-  };
-  const res = await client.deviceManagement?.getDevices(queryParams);
+  const res = await client.deviceManagement?.getDevices(undefined, deviceId);
   return res.data;
 };
 
@@ -67,12 +70,16 @@ const consoleStartUploadRetrainingData = async (deviceId) => {
       return mockData;
     }
     default: {
-      const client = await CALClient.createInstance(ConsoleAccessLibrarySettings);
+      const client = await CALClient.createInstance(config);
       if (!client) {
         throw new Error('Unable to create ConsoleAccessLibrary instance.');
       }
+      /*
+        If successful, res should have both a `result` property with value of `SUCCESS` and an additional
+        `outputSubDirectory` property that indicates which path captured images will be saved to and should
+         be used for making requests to getImages
+      */
       const res = await client.deviceManagement.startUploadInferenceResult(deviceId);
-      console.log(res.data);
       return res.data;
     }
   }
@@ -84,7 +91,7 @@ const consoleStartUploadRetrainingData = async (deviceId) => {
  * @returns an object containing information on whether or not the operation succeeded. Ex: { "result": "SUCCESS" } or { "result": "ERROR", "code": ..., "message": ..., "time": ... }
  */
 const consoleStopUploadRetrainingData = async (deviceId) => {
-  const client = await CALClient.createInstance(ConsoleAccessLibrarySettings);
+  const client = await CALClient.createInstance(config);
   if (!client) {
     throw new Error('Unable to create ConsoleAccessLibrary instance.');
   }
@@ -93,8 +100,14 @@ const consoleStopUploadRetrainingData = async (deviceId) => {
   return res.data;
 };
 
+/**
+ * Uses Console Access Library to request the latest captured image for a device.
+ * @param deviceId The id of the device to request the image for
+ * @param imageSubDirectory The path for which to look for the latest image. This value is provided by startUploadInferenceResult
+ * @returns a jpg in base64 encoded src format meant for an html img tag
+ */
 const consoleGetLatestImage = async (deviceId, imageSubDirectory) => {
-  const client = await CALClient.createInstance(ConsoleAccessLibrarySettings);
+  const client = await CALClient.createInstance(config);
   if (!client) {
     throw new Error('Unable to create ConsoleAccessLibrary instance.');
   }
@@ -105,7 +118,7 @@ const consoleGetLatestImage = async (deviceId, imageSubDirectory) => {
     skip: 0
   };
 
-  const imageResponse = await client.insight.getImages(deviceId, imageSubDirectory, query.orderBy, query.numberOfImages, query.skip.toString());
+  const imageResponse = await client.insight.getImages(deviceId, imageSubDirectory, query.numberOfImages, query.skip, query.orderBy);
   const imageData = imageResponse.data;
   const images = imageData.images;
   if (images && images.length > 0) {
@@ -139,7 +152,6 @@ const getDeviceInfo = async (deviceId, req, res) => {
     const data = await consoleGetDeviceInfo(deviceId);
     if (data && data.devices && data.devices.length > 0) {
       const deviceData = data.devices[0];
-      console.log(deviceData);
       res.send(deviceData);
     } else {
       res.send(null);
@@ -170,7 +182,7 @@ const startUploadRetrainingData = async (deviceId, req, res) => {
     const response = await consoleStartUploadRetrainingData(deviceId);
     switch (response.result) {
       case 'SUCCESS':
-        res.status(200).json(response); // //'00g3ojq480bm6ruwh697/sid-100A50500A2005049064012000000000/image/20230206235048679'
+        res.status(200).json(response);
         break;
       case 'ERROR':
         console.error(`\x1b[31mRequest startUploadRetrainingData failed: ${response.message}\x1b[0m`);

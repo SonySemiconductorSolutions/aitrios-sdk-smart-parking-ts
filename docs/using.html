@@ -8,12 +8,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Smart Parking &mdash; Smart Parking User Guide 1.0.0 documentation</title>
+  <title>Using Smart Parking &mdash; Smart Parking User Guide 2.0.0 documentation</title>
   
 
   
-  
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
   
   
   
@@ -115,6 +113,7 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#edge-ai-device-setup">Edge AI device setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#assembling-the-edge-ai-device-fixture">Assembling the Edge AI device fixture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#positioning-the-sensor">Positioning the sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-git">Install Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#installing-the-smart-parking-application">Installing the Smart Parking application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#editing-environment-settings">Editing environment settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#console-for-aitrios">Console for AITRIOS</a></li>
@@ -152,7 +151,7 @@
 <li><p>The process for starting Smart Parking varies depending on your implementation:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>If you’re running a Docker image or running local instances of the front and backend, go to <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> to use the default port.</p></li>
+<li><p>If you're running a Docker image or running local instances of the front and backend, go to <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> to use the default port.</p></li>
 </ul>
 <blockquote>
 <div><div class="admonition note">
@@ -161,8 +160,8 @@
 </div>
 </div></blockquote>
 <ul class="simple">
-<li><p>If you’re running Smart Parking inside Containers or Codespaces, go to the redirected port.</p></li>
-<li><p>If you’re running a cloud deployment, please refer to the documentation for your specific deployment.</p></li>
+<li><p>If you're running Smart Parking inside Containers or Codespaces, go to the redirected port.</p></li>
+<li><p>If you're running a cloud deployment, please refer to the documentation for your specific deployment.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -186,9 +185,9 @@
 <ol class="arabic">
 <li><p>Start Smart Parking.</p></li>
 <li><p>In the <strong>Enter device name</strong> box, provide the device name of the Edge AI device you want to use.</p></li>
-<li><p>Click the Calibrate tab. The preview shows you the Edge AI device’s output.</p></li>
+<li><p>Click the Calibrate tab. The preview shows you the Edge AI device's output.</p></li>
 <li><p>Click <strong>Add space</strong> to add a polygon to the preview.</p>
-<a class="reference internal image-reference" href="_images/addspace.png"><img alt="_images/addspace.png" src="_images/addspace.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="_images/addspace.png"><img alt="Add a space" src="_images/addspace.png" style="width: 800px;" /></a>
 </li>
 <li><p>Drag the polygon to place it over a parking space.</p></li>
 <li><p>Drag the corners of the polygon to align its edges with the parking space.</p></li>
@@ -200,9 +199,9 @@
 <ol class="arabic">
 <li><p>Start Smart Parking.</p></li>
 <li><p>In the <strong>Enter device name</strong> box, provide the device name of the Edge AI device you want to use.</p></li>
-<li><p>Click the Calibrate tab. The preview shows you the Edge AI device’s output.</p></li>
+<li><p>Click the Calibrate tab. The preview shows you the Edge AI device's output.</p></li>
 <li><p>Select a space on the right side of the screen.</p>
-<a class="reference internal image-reference" href="_images/editspace.png"><img alt="_images/editspace.png" src="_images/editspace.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="_images/editspace.png"><img alt="Select a space" src="_images/editspace.png" style="width: 800px;" /></a>
 </li>
 <li><p>Drag the corners of the polygon to align its edges with the parking space.</p></li>
 <li><p>Repeat steps 4 and 5 for each parking space.</p>
@@ -210,7 +209,7 @@
 <p class="admonition-title">Tip</p>
 <p>Click <strong>Clear</strong> below the workspace to remove all polygons.</p>
 <p>You can click <strong>Delete</strong> below the workspace to remove the selected polygon.</p>
-<p>Select a space on the right side of the Calibrate tab and click the <strong>Delete</strong> button <a class="reference internal" href="_images/b_delete.png"><img alt="b_delete" src="_images/b_delete.png" style="height: 18px;" /></a> to remove it.</p>
+<p>Select a space on the right side of the Calibrate tab and click the <strong>Delete</strong> button <a class="reference internal" href="_images/b_delete.png"><img alt="Trash box" src="_images/b_delete.png" style="height: 18px;" /></a> to remove it.</p>
 </div>
 </li>
 </ol>
@@ -222,7 +221,7 @@
 <li><p>In the <strong>Enter device name</strong> box, provide the device name of the Edge AI device you want to use.</p></li>
 <li><p>Click the Detect tab. The preview shows an overview of the parking spaces and an Edge AI device view with detection rectangles.</p></li>
 <li><p>After detection is complete, a red indicator represents an occupied space, a green indicator represents a vacant space, an orange rectangle represents the detection area, and a blue polygon represents a defined space.</p>
-<a class="reference internal image-reference" href="_images/detected.png"><img alt="_images/detected.png" src="_images/detected.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="_images/detected.png"><img alt="Detection of vacant and occupied spaces" src="_images/detected.png" style="width: 800px;" /></a>
 <p>You can use the <strong>Occupied</strong>, <strong>Vacant</strong>, <strong>Defined spaces</strong>, and <strong>Detection rectangle</strong> switches to customize the display.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -251,7 +250,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'1.0.0',
+            VERSION:'2.0.0',
             LANGUAGE:'en',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -260,17 +259,14 @@
         };
     </script>
     <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
     <div class="footer" role="contentinfo">
         <div class="container">
-            &#169; Copyright 2023, Sony Semiconductor Solutions Corp.
-        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.
+            &#169; Copyright 2023 Sony Semiconductor Solutions Corp.
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1.
         </div>
     </div>  
 

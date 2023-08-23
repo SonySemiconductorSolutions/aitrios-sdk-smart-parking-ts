@@ -21,12 +21,18 @@ const turf = require('@turf/turf');
 
 const router = express.Router();
 
-const CALClient = require('consoleAccessLibrary').Client;
+const { Client: CALClient, Config: CALConfig } = require('consoleAccessLibrary');
 
 const { parseFlatBuffer, persistCalibrationData, getCalibrationData } = require('../common/util.js');
 
 const Config = require('../common/config.js').Config;
 const ConsoleAccessLibrarySettings = Config.ConsoleAccessLibrarySettings;
+const calConfig = new CALConfig(
+  ConsoleAccessLibrarySettings.consoleEndpoint,
+  ConsoleAccessLibrarySettings.portalAuthorizationEndpoint,
+  ConsoleAccessLibrarySettings.clientId,
+  ConsoleAccessLibrarySettings.clientSecret
+);
 
 const MOCK_DIRECTORY = path.join(__dirname, '../mock');
 const MOCK_DEVICE_0_INFERENCES = require(path.join(MOCK_DIRECTORY, 'mockDevice0', 'inferences.json'));
@@ -37,8 +43,13 @@ let MOCK_DEVICE_1_INDEX = 0;
 
 const latestCalibrationData = {};
 
+/*
+  Given <deviceId> (NOTE: an AITRIOS device's `DeviceName` is different from its id), uses the
+  ConsoleAccessLibrary config object to create a ConsoleAccessLibrary client to retrieve latest
+  inference results.
+*/
 const consoleGetLatestInferenceResults = async (deviceId) => {
-  const client = await CALClient.createInstance(ConsoleAccessLibrarySettings);
+  const client = await CALClient.createInstance(calConfig);
   if (!client) {
     throw new Error('Unable to create ConsoleAccessLibrary instance.');
   }
@@ -46,7 +57,9 @@ const consoleGetLatestInferenceResults = async (deviceId) => {
   const numberOfInferenceResults = 1;
   const filter = undefined;
   const raw = 1;
-  const inferenceResponse = await client.insight.getInferenceresults(deviceId, numberOfInferenceResults, filter, raw);
+
+  /* Current behavior when omitting the `time` parameter is to simply get the latest stored result */
+  const inferenceResponse = await client.insight.getInferenceResults(deviceId, filter, numberOfInferenceResults, raw);
   if (inferenceResponse && inferenceResponse.data && inferenceResponse.data[0] && inferenceResponse.data[0].inference_result) {
     const data = inferenceResponse.data[0].inference_result;
     const inferenceData = data.Inferences;
@@ -54,6 +67,7 @@ const consoleGetLatestInferenceResults = async (deviceId) => {
       const latestData = inferenceData[0];
       const asBase64String = latestData.O;
       try {
+        /* Inference data is stored as base64 encoded flatbuffer-serialized string and must be deserialized */
         const parsedData = parseFlatBuffer(asBase64String);
         return parsedData;
       } catch (e) {
@@ -69,6 +83,16 @@ const consoleGetLatestInferenceResults = async (deviceId) => {
   };
 };
 
+/*
+  This is application specific and unrelated to AITRIOS itself. For the purposes of a demo and tutorial, the algorithm
+  used here is simple and naive, meant only to illustrate a potential use case. In short, the turf.js library is used
+  to represent both the bounding boxes inferred by the IMX500 and the user-defined parking spaces as Turf Polygons.
+
+  The % overlap of each bounding box with each parking spot is then calculated and used to construct a simple map of
+  ParkingSpotLabel to its corresponding % overlap. This data is what is ultimately sent down to the UI and compares
+  the calculated % overlap against SMART_PARKING_OVERLAP_THRESHOLD in your *.env file to determine whether or not it is
+  displayed as "Occupied" or "Vacant".
+*/
 const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) => {
   if (latestCalibrationData[deviceId]) {
     const scaleRatio = Config.SMART_PARKING_DEFAULT_FEED_SIZE / Config.SMART_PARKING_CAMERA_RESOLUTION;
@@ -83,6 +107,7 @@ const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) 
         { x: i.x * scaleRatio, y: i.Y * scaleRatio }
       ];
     });
+
     const turfPolygonsCalibration = calibrationPolygons.map(p => {
       const v = p.vertices;
       return {
@@ -96,6 +121,7 @@ const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) 
         ]])
       };
     });
+
     const turfPolygonsDetection = inferenceVertices.map(v => {
       return turf.polygon([[
         turf.toWgs84(turf.point([v[0].x, v[0].y])).geometry.coordinates,
@@ -106,6 +132,11 @@ const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) 
       ]]);
     });
 
+    /*
+      For each Parking Space/Calibration polygon, calculate its % overlap with each inferred bounding box polygon.
+      Each parking space keeps track of only the MAX % overlap across all bounding boxes.
+      Constructs a map of parking space ID to its % overlap
+    */
     const overlapMap = turfPolygonsCalibration.reduce((obj, cal) => {
       const calLabel = cal.label;
       const calPol = cal.polygon;
@@ -117,6 +148,11 @@ const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) 
         if (xPolygon) {
           const xArea = turf.area(xPolygon);
           const overlapRatio = xArea / calArea;
+
+          /*
+            Feel free to play around this. Maybe instead of keeping track of the MAX % overlap, you can instead
+            try using the sum or some other calculated quantity?
+          */
           if (overlapRatio > maxIntersectRatio) {
             maxIntersectRatio = overlapRatio;
           }
@@ -133,6 +169,7 @@ const calculateCalibrationInferenceIntersections = (deviceId, inferenceResults) 
   return {};
 };
 
+/* Nothing super interesting here in terms of learning how to use the ConsoleAccessLibrary */
 const getParkingCalibrationMockData = async (deviceId) => {
   const mockId = ['mockDevice0', 'mockDevice1'].includes(deviceId) ? deviceId : 'mockDevice1';
   switch (deviceId) {
@@ -217,10 +254,6 @@ router.get('/latest/:deviceId', async (req, res) => {
       console.error('\x1b[31mRequest getLatestInferenceResults failed for unknown reasons.\x1b[0m');
     }
   }
-});
-
-router.get('/mock/:deviceId', async (req, res) => {
-
 });
 
 const resetMockInferenceIndex = (deviceId) => {

@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/*
+  This demo/tutorial uses Express to bridge the gap between the UI components in /src/web and
+  the ConsoleAccessLibrary SDK used to make requests to AITRIOS. If you are unfamiliar with Express
+  and just want to see how to use the SDK to make requests to AITRIOS, skip to /src/server/routes/device
+  and /src/server/routes/data
+*/
+
 require('dotenv').config();
 const express = require('express');
 

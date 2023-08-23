@@ -25,7 +25,7 @@ import DetectionFeed from '../../components/shared/DetectionFeed';
 import CalibrateModeInfo from '../../components/shared/CalibrateModeInfo';
 import DetectModeInfo from '../../components/shared/DetectModeInfo';
 import { getDeviceInfo, getCalibration, postStopUploadImage, postStartUploadImage, 
-    getLatestDeviceImage, updateDeviceImage, updateMockImage, getLatestInferenceData, persistCalibrationPolygons, polygonsToCoords } from '../../helpers/api';
+    getLatestDeviceImage, updateMockImage, getLatestInferenceData, persistCalibrationPolygons, polygonsToCoords } from '../../helpers/api';
 import './styles.scss';
 import { DEFAULT_POLYGON_COORDINATES, addPolygonFromLabelAndVertices } from '../../helpers/canvas';
 
@@ -47,6 +47,7 @@ const DevicePage = props => {
                     setInternalDeviceId(device_id);
                 }
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     useEffect(() => {
@@ -56,6 +57,7 @@ const DevicePage = props => {
                 startUploadImage(device_id);
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, device]);
 
     useEffect(() => {
@@ -95,6 +97,7 @@ const DevicePage = props => {
         return () => {
             window.removeEventListener('beforeunload', handleTabClose);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [internalDeviceId]);
     
     useEffect(() => {
@@ -119,7 +122,7 @@ const DevicePage = props => {
                 }
             }))
         );
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [calibrationPolygons]);
 
     useEffect(() => {
@@ -132,17 +135,23 @@ const DevicePage = props => {
                 });
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mode]);
 
+    /* eslint-disable no-unused-vars */
     const [mockb64Data, setMockb64Data] = React.useState(0);
     const [latestB64, setLatestB64] = React.useState(null);
+    /* eslint-enable no-unused-vars */
 
     const [detectOccupiedVisible, setDetectOccupiedVisible] = React.useState(true);
     const [detectVacantVisible, setDetectVacantVisible] = React.useState(true);
     const [detectParkingVisible, setDetectParkingVisible] = React.useState(true);
     const [detectBoundingVisible, setDetectBoundingVisible] = React.useState(true);
 
+    /* eslint-disable no-unused-vars */
     const [uploadDirectory, setUploadDirectory] = React.useState(null);
+    /* eslint-enable no-unused-vars */
+
     const [latestImageURI, setLatestImageURI] = React.useState(null);
     const [boundingBoxes, setBoundingBoxes] = React.useState([]);
     const [overlapMap, setOverlapMap] = React.useState({});
@@ -271,22 +280,6 @@ const DevicePage = props => {
                     break;
             }
         }
-    }
-
-    const updateImage = (imagePath) => {
-        updateDeviceImage(imagePath)
-        .then(blob => {
-            // const reader = new FileReader();
-            // reader.onloadend = () => {
-            //     const base64data = reader.result;                
-            //     runningImageBase64Data = runningImageBase64Data.concat(base64data);
-            //     console.log(runningImageBase64Data);
-            // }
-            // reader.readAsDataURL(blob); 
-            const blobURI = URL.createObjectURL(blob);
-            setLatestImageURI(blobURI);
-            setSecondsSinceLastImage(0);
-        });
     }
 
     const onCalibrateClick = () => {

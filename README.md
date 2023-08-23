@@ -13,10 +13,23 @@ In this User Guide, AI model is trained on the Console UI and preset PPL is used
 Cloud Application utilizes Console access library and deserialization sample from Cloud SDK. See software architecture in User Guide and Cloud SDK for more information
 
 ## Contents <!-- omit in toc -->
+- Straight to AITRIOS&trade;
 - Quick Start
 - Get Support
 - Trademark
 - Major Components
+
+## Straight to AITRIOS&trade;
+If all you are interested in is how this application communicates to AITRIOS, first note that the UI components in /web
+ultimately make http requests to the Express server running via /server/server.js to communicate to AITRIOS.
+
+Therefore, if all you are interested in is how this application communicates to AITRIOS, the bare minimum to start is to look at the simple Express routes mounted on `/device` -> `/src/server/routes/device.js` and `/data` -> `/src/data/routes/data.js`, respectively.
+
+Both of those files have examples that include creating  `ConsoleAccessLibrary.Config` and `ConsoleAccessLibrary.Client`
+objects which are then used to make calls to the ConsoleAccessLibrary SDK.
+
+Refer to `/src/data/routes/device : consoleStartUploadRetrainingData` to see how `startUploadInferenceResult` is called
+Refer to `/src/data/routes/data : consoleGetLatestInferenceResults` to see how `getInferenceResults` is called
 
 ## Quick Start
 
@@ -41,6 +54,32 @@ See Smart Parking User Guide(docs/index.html) which includes
 ## Get support
 - [Contact us](https://developer.aitrios.sony-semicon.com/contact-us/)
 
-## Trademark
-- [Read This First](https://developer.aitrios.sony-semicon.com/development-guides/documents/manuals/)
+## See also
+- ["**Developer Site**"](https://developer.aitrios.sony-semicon.com/en)
 
+## Trademark
+- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/development-guides/documents/manuals/)
+
+## Updates
+If a change to the Console Access Library submodule dependency is required, 
+as in the URI of the submodule itself has changed, run:
+- git submodule sync
+- git submodule update --init --recursive --remote
+
+If a change to the FlatBuffers object schemas need to be updated:
+- Place the updated *.ts schema files in server/common
+- Compile down to JavaScript (if desired)
+- Update require/import statements accordingly
+
+## Versioning
+
+This repository aims to adhere to Semantic Versioning 2.0.0.
+
+## Branch
+
+See the "**Release Note**" from [**Releases**] for this repository.
+
+Each release is generated in the main branch. Pre-releases are generated in the develop branch. Releases will not be provided by other branches.
+
+## Security
+Before using Codespaces, please read the Site Policy of GitHub and understand the usage conditions.

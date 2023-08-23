@@ -37,10 +37,26 @@ const CalibrationFeed = props => {
         persistPolygons,
     } = props;
 
+    const initCanvas = () => {
+        const canvas = new fabric.Canvas('canvas', {
+            height: DEFAULT_FEED_CANVAS_SIZE,
+            width: DEFAULT_FEED_CANVAS_SIZE,
+            backgroundColor: null
+        });
+        canvas.setBackgroundImage(latestImageURI || '/calibrator_test.jpg', () => {
+            canvas.backgroundImage.scaleToWidth(DEFAULT_FEED_CANVAS_SIZE);
+            canvas.backgroundImage.scaleToHeight(DEFAULT_FEED_CANVAS_SIZE);
+            canvas.renderAll.bind(canvas);
+            canvas.renderAll();
+        });
+        return canvas;
+    }
+    
     const [canvas, setCanvas] = useState(null);
     useEffect(() => {
         const _canvas = initCanvas();
         setCanvas(_canvas);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // props effects
@@ -53,6 +69,7 @@ const CalibrationFeed = props => {
                 canvas.renderAll();
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [latestImageURI]);
 
     // props effects
@@ -70,6 +87,7 @@ const CalibrationFeed = props => {
             }
             canvas.renderAll();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [canvas, calibrationPolygons]);
 
     // props effects
@@ -82,22 +100,8 @@ const CalibrationFeed = props => {
                 canvas.discardActiveObject();            
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activePolygon]);
-
-    const initCanvas = () => {
-        const canvas = new fabric.Canvas('canvas', {
-            height: DEFAULT_FEED_CANVAS_SIZE,
-            width: DEFAULT_FEED_CANVAS_SIZE,
-            backgroundColor: null
-        });
-        canvas.setBackgroundImage(latestImageURI || '/calibrator_test.jpg', () => {
-            canvas.backgroundImage.scaleToWidth(DEFAULT_FEED_CANVAS_SIZE);
-            canvas.backgroundImage.scaleToHeight(DEFAULT_FEED_CANVAS_SIZE);
-            canvas.renderAll.bind(canvas);
-            canvas.renderAll();
-        });
-        return canvas;
-    }
 
     useEffect(() => {
 
@@ -259,7 +263,6 @@ const CalibrationFeed = props => {
                     y: (fabricObject.points[anchorIndex].y - fabricObject.pathOffset.y),
                 }, fabricObject.calcTransformMatrix()),
                 actionPerformed = fn(eventData, transform, x, y),
-                newDim = fabricObject._setPositionDimensions({}),
                 polygonBaseSize = fabricObject._getNonTransformedDimensions(),
                 newX = (fabricObject.points[anchorIndex].x - fabricObject.pathOffset.x) / polygonBaseSize.x,
                     newY = (fabricObject.points[anchorIndex].y - fabricObject.pathOffset.y) / polygonBaseSize.y;
