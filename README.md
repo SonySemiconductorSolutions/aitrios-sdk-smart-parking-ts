@@ -52,13 +52,13 @@ See Smart Parking User Guide(docs/index.html) which includes
 - Software Architecture
 
 ## Get support
-- [Contact us](https://developer.aitrios.sony-semicon.com/contact-us/)
+- [Contact us](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/contact-us/)
 
 ## See also
-- ["**Developer Site**"](https://developer.aitrios.sony-semicon.com/en)
+- ["**Developer Site**"](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/)
 
 ## Trademark
-- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/development-guides/documents/manuals/)
+- ["**Read This First**"](https://developer.aitrios.sony-semicon.com/en/edge-ai-sensing/documents/read-this-first/)
 
 ## Updates
 If a change to the Console Access Library submodule dependency is required, 
