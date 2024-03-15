@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Appendix: Software Architecture &mdash; Smart Parking User Guide 2.0.0 documentation</title>
+  <title>Appendix: Software Architecture &mdash; Smart Parking User Guide 2.0.2 documentation</title>
   
 
   
@@ -109,8 +109,8 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">System requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#edge-ai-device-setup">Edge AI device setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#assembling-the-edge-ai-device-fixture">Assembling the Edge AI device fixture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#edge-device-setup">Edge Device setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#assembling-the-edge-device-fixture">Assembling the Edge Device fixture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#positioning-the-sensor">Positioning the sensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#install-git">Install Git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#installing-the-smart-parking-application">Installing the Smart Parking application</a></li>
@@ -174,11 +174,11 @@
 <p>When given a device name, the frontend allows a user to perform three major operations:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p>Tells the connected Edge AI device to start collecting inference data and images via <code class="docutils literal notranslate"><span class="pre">StartUploadInferenceResult</span></code>.</p></li>
-<li><p>After images are loaded, the frontend calibrates the Edge AI device by annotating the parking spots in the feed with user-specified 4-point polygons.</p>
+<li><p>Tells the connected Edge Device to start collecting inference data and images via <code class="docutils literal notranslate"><span class="pre">StartUploadInferenceResult</span></code>.</p></li>
+<li><p>After images are loaded, the frontend calibrates the Edge Device by annotating the parking spots in the feed with user-specified 4-point polygons.</p>
 <p>The geometric data representing these 4-point polygons (vertex coordinates) is stored to and retrieved from the local file.</p>
 </li>
-<li><p>Using an an appropriately uploaded model (by default, <code class="docutils literal notranslate"><span class="pre">SmartParking-Cars</span></code>, a model trained on Microsoft Custom Vision), the frontend processes captured Edge AI device frames into object inference data (in this case, cars) and stores it in the Console.</p></li>
+<li><p>Using an an appropriately uploaded model (by default, <code class="docutils literal notranslate"><span class="pre">SmartParking-Cars</span></code>, a model trained on Microsoft Custom Vision), the frontend processes captured Edge Device frames into object inference data (in this case, cars) and stores it in the Console.</p></li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -204,7 +204,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.0.0',
+            VERSION:'2.0.2',
             LANGUAGE:'en',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

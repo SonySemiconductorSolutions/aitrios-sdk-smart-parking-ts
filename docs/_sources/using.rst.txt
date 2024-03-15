@@ -20,7 +20,7 @@ Starting Smart Parking
 
     - If you're running a cloud deployment, please refer to the documentation for your specific deployment.
  
-#. In the **Enter device name** box, provide the device name of the Edge AI device you want to use.
+#. In the **Enter device name** box, provide the device name of the Edge Device you want to use.
 
 
 .. _offline:
@@ -28,7 +28,7 @@ Starting Smart Parking
 Using Offline Mode
 ^^^^^^^^^^^^^^^^^^
 
-An offline mode is provided to demonstrate Smart Parking without an Internet connection or Edge AI device.
+An offline mode is provided to demonstrate Smart Parking without an Internet connection or Edge Device.
 
 In offline mode, the system runs using prerecorded data. Please note the following limitations:
 
@@ -45,9 +45,9 @@ Adding spaces
 
 #. Start Smart Parking.
 
-#. In the **Enter device name** box, provide the device name of the Edge AI device you want to use.
+#. In the **Enter device name** box, provide the device name of the Edge Device you want to use.
 
-#. Click the Calibrate tab. The preview shows you the Edge AI device's output.
+#. Click the Calibrate tab. The preview shows you the Edge Device's output.
 
 #. Click **Add space** to add a polygon to the preview.
 
@@ -68,9 +68,9 @@ Editing spaces
 
 #. Start Smart Parking.
 
-#. In the **Enter device name** box, provide the device name of the Edge AI device you want to use.
+#. In the **Enter device name** box, provide the device name of the Edge Device you want to use.
 
-#. Click the Calibrate tab. The preview shows you the Edge AI device's output.
+#. Click the Calibrate tab. The preview shows you the Edge Device's output.
 
 #. Select a space on the right side of the screen.
 
@@ -101,9 +101,9 @@ Viewing vacant and occupied spaces
 
 #. Start Smart Parking.
 
-#. In the **Enter device name** box, provide the device name of the Edge AI device you want to use.
+#. In the **Enter device name** box, provide the device name of the Edge Device you want to use.
 
-#. Click the Detect tab. The preview shows an overview of the parking spaces and an Edge AI device view with detection rectangles.
+#. Click the Detect tab. The preview shows an overview of the parking spaces and an Edge Device view with detection rectangles.
 
 #. After detection is complete, a red indicator represents an occupied space, a green indicator represents a vacant space, an orange rectangle represents the detection area, and a blue polygon represents a defined space.
 

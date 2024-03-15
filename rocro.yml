@@ -1,0 +1,37 @@
+inspecode:
+  global:
+    ignore:
+      - "rocro.yml"
+  tools:
+    fossid:
+    - machine:
+        cpu: 2.5
+      ignore:
+        - "rocro.yml"
+    fortify:
+      if:
+        and:
+        - or:
+          - match:
+              pattern: "main"
+              type: glob
+              value: ${{git.branch}}
+          - match:
+              pattern: "release/*"
+              type: glob
+              value: ${{git.branch}}
+        - or:
+          - match:
+              pattern: "*"
+              type: glob
+              value: ${{git.changed-files}}
+      options:
+        --commands:
+          - sudo apt-get update -y
+          - curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs
+          - node --version
+          - npm run install-dependencies
+          - npm run build
+          - sourceanalyzer -b build_id ./ -exclude "./server/node_modules:./web/node_modules:./server/consoleaccesslibrary"
+      machine:
+        cpu: 4.0
