@@ -31,13 +31,13 @@ Frontend (React.js)
 
 When given a device name, the frontend allows a user to perform three major operations:
 
- #. Tells the connected Edge AI device to start collecting inference data and images via ``StartUploadInferenceResult``.
+ #. Tells the connected Edge Device to start collecting inference data and images via ``StartUploadInferenceResult``.
 
- #. After images are loaded, the frontend calibrates the Edge AI device by annotating the parking spots in the feed with user-specified 4-point polygons.
+ #. After images are loaded, the frontend calibrates the Edge Device by annotating the parking spots in the feed with user-specified 4-point polygons.
 
     The geometric data representing these 4-point polygons (vertex coordinates) is stored to and retrieved from the local file.
 
- #. Using an an appropriately uploaded model (by default, ``SmartParking-Cars``, a model trained on Microsoft Custom Vision), the frontend processes captured Edge AI device frames into object inference data (in this case, cars) and stores it in the Console.
+ #. Using an an appropriately uploaded model (by default, ``SmartParking-Cars``, a model trained on Microsoft Custom Vision), the frontend processes captured Edge Device frames into object inference data (in this case, cars) and stores it in the Console.
 
   - When actively collecting data, incoming inference data is displayed on the Detection Feed in the form of bounding boxes.
  

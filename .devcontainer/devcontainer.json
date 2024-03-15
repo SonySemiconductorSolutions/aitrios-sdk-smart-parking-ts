@@ -8,7 +8,7 @@
 		// Append -bullseye or -buster to pin to an OS version.
 		// Use -bullseye variants on local on arm64/Apple Silicon.
 		"args": { 
-			"VARIANT": "16-bullseye"
+			"VARIANT": "18-bullseye"
 		}
 	},
 
@@ -24,7 +24,7 @@
 
 		"codespaces": {
 			"repositories": {
-				"SonySemiconductorSolutions/aitrios-sdk-console-access-lib-ts": {
+				"SonySemiconductorSolutions/aitrios-sdk-typescript-dev": {
 					"permissions": {
 						"contents": "read"
 					}

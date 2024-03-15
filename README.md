@@ -1,14 +1,14 @@
 # Smart Parking
 
 ## About this Software
-This is a sample of Vision and Sensing Application SDK and Cloud SDK. Please note the following when using it：
+This is a sample of Edge Application SDK and Cloud SDK. Please note the following when using it：
 
 - This sample is released with the assumption it will be used for development.
-- This sample may contain errors or defects that obstruct regular operation of the device.
+- This sample may contain errors or defects that obstruct regular operation of the Edge Device.
 
-Smart Parking consists of an AI model, PPL, Console, and Cloud Application. The User Guide(docs/index.html) describes how to develop and set up these components and start application.
+Smart Parking consists of an AI model, library, Console, and Cloud Application. The User Guide(docs/index.html) describes how to develop and set up these components and start application.
 
-In this User Guide, AI model is trained on the Console UI and preset PPL is used. Vision and Sensing Application SDK also provides the capabilities to develop AI model and PPL by developer. See Vision and Sensing Application SDK for more detail.
+In this User Guide, AI model is trained on the Console UI and preset library is used. Edge Application SDK also provides the capabilities to develop AI model and library by developer. See Edge Application SDK for more detail.
 
 Cloud Application utilizes Console access library and deserialization sample from Cloud SDK. See software architecture in User Guide and Cloud SDK for more information
 
@@ -34,7 +34,7 @@ Refer to `/src/data/routes/data : consoleGetLatestInferenceResults` to see how `
 ## Quick Start
 
 1) It is certainly possible to simply clone the project directly from https://github.com/SonySemiconductorSolutions/aitrios-sdk-smart-parking-ts
-	- Requires a machine with `node.js` and `npm` installed. Smart Parking was developed using **Node v17.9.0**.
+	- Requires a machine with `node.js` and `npm` installed. Smart Parking was developed using **Node:18-bullseys**.
 	- In the main project root directory, run the following commands: `npm run install-dependencies` then `npm run build-start`.
 2) One can also create a Docker image using the following command inside project root: `docker build -t <name>:<tag> .`
     - Requires that `Docker` is installed on the host machine.
@@ -70,6 +70,11 @@ If a change to the FlatBuffers object schemas need to be updated:
 - Place the updated *.ts schema files in server/common
 - Compile down to JavaScript (if desired)
 - Update require/import statements accordingly
+
+## Issues/Limitations
+- If you add more than 64 parking spaces during Calibrate, the frame name will be displayed as an undefined symbol, making it difficult to identify frames.
+- When you want to run Calibrate, click Live Image to switch to the Enlarged Size view and then select the Calibrate tab.
+- After starting the application, the time from registering the device name to entering the Calibration mode and the time from exiting the Calibration mode to entering the Detection mode may take about 5 seconds.
 
 ## Versioning
 

@@ -11,13 +11,13 @@ The following lists the official system requirements for using Smart Parking:
 
 - Access to Smart Parking Repository(https://github.com/SonySemiconductorSolutions/aitrios-sdk-smart-parking-ts)
 
-- Edge AI devices that are enrolled in Console
+- Edge Devices that are enrolled in Console
 
  .. note::
 
-   An offline mode is provided to demonstrate the tool without an Internet connection or Edge AI device. Please see :ref:`offline`.
+   An offline mode is provided to demonstrate the tool without an Internet connection or Edge Device. Please see :ref:`offline`.
 
-- Mounting supplies for Edge AI devices:
+- Mounting supplies for Edge Devices:
 
   - Tripod: https://www.amazon.com/dp/B00XI87KV8
   

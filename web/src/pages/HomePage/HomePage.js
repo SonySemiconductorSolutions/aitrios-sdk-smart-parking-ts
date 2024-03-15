@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Sony Semiconductor Solutions Corp. All rights reserved.
+ * Copyright 2023, 2024 Sony Semiconductor Solutions Corp. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const validRe = /[-_.(\\)a-zA-Z0-9]/g;
-const notValidChar = /[!@#$%^&*+=|/~`"\s]/g;
+const notValidChar = /['!@#$%^&*+=|/~`"\s]/g;
 
 class HomePage extends React.Component {
 	constructor(props) {

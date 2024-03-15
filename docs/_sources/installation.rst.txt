@@ -3,26 +3,26 @@
 Installation and setup
 ======================
 
-Smart Parking runs on an Edge AI device and a PC running Windows 10 with Docker Desktop or GitHub Codespaces. Please see :ref:`reqs`.
+Smart Parking runs on an Edge Device and a PC running Windows 10 with Docker Desktop or GitHub Codespaces. Please see :ref:`reqs`.
 
  .. note::
 
-   An offline mode is provided to demonstrate the tool without an Internet connection or Edge AI device. Please see :ref:`offline`.
+   An offline mode is provided to demonstrate the tool without an Internet connection or Edge Device. Please see :ref:`offline`.
 
 .. _installvis:
 
-Edge AI device setup
+Edge Device setup
 --------------------
 
-The documentation provided with the Edge AI device provides the information you need for the initial sensor configuration.
+The documentation provided with the Edge Device provides the information you need for the initial sensor configuration.
 
-Please refer to the Device Setup Guide for information about setting up the device and connecting to Console.
+Please refer to the Device Setup Guide for information about setting up the Edge Device and connecting to Console.
 
 For more information about training the system, please see Please see :ref:`training`.
 
 .. _assembly:
 
-Assembling the Edge AI device fixture
+Assembling the Edge Device fixture
 -------------------------------------
 
 #. Attach the 1/4"-20 thread adapter (1) to the mounting screw on the tripod.
@@ -31,9 +31,9 @@ Assembling the Edge AI device fixture
 
      .. image:: images/Tripod.png
       :width: 300
-      :alt: Tripod with Edge AI Device
+      :alt: Tripod with Edge Device
 
-#. Attach the Edge AI device (3) to the clamp as shown below. 
+#. Attach the Edge Device (3) to the clamp as shown below. 
 
    Note the connection of the LAN port.
 
@@ -60,7 +60,7 @@ Positioning the sensor
     :width: 300
     :alt: Toy cars on the printed parking lot
 
-#. Raise the tripod and adjust the angle of the clamp so the Edge AI device is aimed at the parking area as shown:
+#. Raise the tripod and adjust the angle of the clamp so the Edge Device is aimed at the parking area as shown:
 
    .. image:: images/TripodV3Board.jpg
     :width: 300
@@ -128,11 +128,11 @@ Creating and running a Docker image
 
     Please be sure to include the closing period in the preceding command.
     
-#. Run the following command to start the Docker image:
+#. Run the following command to start the Docker image(If SMART_PARKING_INTERNAL_PORT is changed, please use the new value):
 
    .. code-block::
 
-    docker run -p 5000:8080 <imagename>:<tag>
+    docker run -p 8080:8080 <imagename>:<tag>
 
 Running local front and backend instances
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,7 +141,7 @@ Running local front and backend instances
 
    .. note::
 
-     Smart Parking was developed using Node v17.9.0.
+     Smart Parking was developed using Node.js 18.
    
 #. Clone the Smart Parking SDK repository from GitHub.
 
@@ -241,9 +241,9 @@ For information about configuring and using the Console for AITRIOS, please refe
 Console tasks
 ~~~~~~~~~~~~~
 
-#. Create a Config in **Deploy Device** with the intended Model for Smart Parking and deploy it to the Edge AI device.
+#. Create a Config in **Deploy Device** with the intended Model for Smart Parking and deploy it to the Edge Device.
 
-#. In the **Application** section of **Deploy Device**, deploy the "Vision and Sensing Application" for object detection ("Sample Object Detection Application" can be used) to the Edge AI device.
+#. In the **Application** section of **Deploy Device**, deploy the "Edge Application" for object detection ("Sample Object Detection Application" can be used) to the Edge Device.
 
-#. Upload an appropriate Command Parameter File (Settings > Command Parameter > Import) and bind it to the Edge AI device in **Manage Device**. We provide a sample starting point for such a file in the root of the project repository: ``SmartParking_StartUploadInferenceData.json``.
+#. Upload an appropriate Command Parameter File (Settings > Command Parameter > Import) and bind it to the Edge Device in **Manage Device**. We provide a sample starting point for such a file in the root of the project repository: ``SmartParking_StartUploadInferenceData.json``.
 
