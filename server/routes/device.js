@@ -18,6 +18,8 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const router = express.Router();
+const dateFnsTz = require('date-fns-tz');
+const dateFns = require('date-fns');
 
 const { Client: CALClient, Config: CALConfig } = require('consoleAccessLibrary');
 
@@ -118,7 +120,11 @@ const consoleGetLatestImage = async (deviceId, imageSubDirectory) => {
     skip: 0
   };
 
-  const imageResponse = await client.insight.getImages(deviceId, imageSubDirectory, query.numberOfImages, query.skip, query.orderBy);
+  const utcDate = dateFnsTz.toZonedTime(new Date(), 'UTC');
+  const notConvertedDate = new Date(utcDate.getTime() - 1 * 60 * 60 * 1000);
+  const fromDatetime = dateFns.format(notConvertedDate, 'yyyyMMddHHmm');
+
+  const imageResponse = await client.insight.getImages(deviceId, imageSubDirectory, query.numberOfImages, query.skip, query.orderBy, fromDatetime, undefined);
   const imageData = imageResponse.data;
   const images = imageData.images;
   if (images && images.length > 0) {
