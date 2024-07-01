@@ -1,6 +1,6 @@
 {
   "name": "smart-parking-ui",
-  "version": "1.0.0",
+  "version": "2.0.3",
   "description": "UI component for Smart Parking that detects cars and calculates overlap with user-defined parking spaces",
   "author": "",
   "private": true,

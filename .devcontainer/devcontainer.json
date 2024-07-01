@@ -16,6 +16,16 @@
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "/bin/bash"
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "bash"
+			},
+
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"dbaeumer.vscode-eslint"
@@ -24,7 +34,7 @@
 
 		"codespaces": {
 			"repositories": {
-				"SonySemiconductorSolutions/aitrios-sdk-console-access-lib-ts": {
+				"SonySemiconductorSolutions/aitrios-sdk-typescript-dev": {
 					"permissions": {
 						"contents": "read"
 					}
